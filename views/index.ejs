@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>UConnect - Home</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: black;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: black;
+            -webkit-border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            background: #265CFF;
+            height: 2%;
+        }
+
+        img:hover {
+            --webkit-filter: blur(1px);
+            filter: blur(1px);
+        }
+
+        .navbar {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: -50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand img {
+            width: 160px;
+            height: 28px;
+        }
+
+        #registration-button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1.5px solid #00175B;
+            border-radius: 5px;
+            background-color: #00175B;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #registration-button:hover {
+            background-color: transparent;
+            color: #00175B;
+            border: 1.5px solid #00175B;
+        }
+
+        #events-button {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: transparent;
+            color: #FF9900;
+            border: 1.5px solid #FF9900;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            
+        }
+
+        #events-button:hover {
+            border: 1.5px solid #FF9900;
+            background-color: #FF9900;
+            color: white;
+            cursor: pointer;
+        }
+        #login-button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1.5px solid #265CFF;
+            border-radius: 5px;
+            background-color: #265CFF;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        #login-button:hover {
+            background-color: transparent;
+            color: #265CFF;
+            border: 1.5px solid #265CFF;
+        }
+
+        .hero {
+            background-color: black;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0 0 30px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+
+        .about-app p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .about-app {
+            width: 80%;
+            height: 100vh;
+            margin: auto;
+            margin-bottom: 50px;
+            padding-top: 90px;
+            background-color: black;
+        }
+
+        .about-app-col {
+            flex-basis: 45%;
+            padding: 30px 2px;
+        }
+
+        about-app-content {
+            margin-top: 100px;
+        }
+
+        .about-app-col p {
+            padding: 15px 0 25px;
+            color: white;
+        }
+
+        .about-app-col h1 {
+            color: white;
+        }
+
+        .about-app-col img {
+            width: 95%;
+        }
+
+        .row {
+            margin-top: 5%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        .vertical-line-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+        }
+
+        .vertical-line {
+            height: 200px;
+            width: 2px;
+            background-color: white;
+            margin: 0 auto;
+        }
+
+
+        .about-author p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .about-author {
+            width: 80%;
+            height: 100vh;
+            margin: auto;
+            margin-bottom: 50px;
+            padding-top: 90px;
+            background-color: black;
+        }
+
+        .about-author-col {
+            flex-basis: 45%;
+            padding: 30px 2px;
+        }
+
+        about-author-content {
+            margin-top: 100px;
+        }
+
+        .about-author-col p {
+            padding: 15px 0 25px;
+            color: white;
+        }
+
+        .about-author-col h1 {
+            color: white;
+        }
+
+        .about-author-col img {
+            width: 90%;
+        }
+
+        .row {
+            margin-top: 5%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        .cta {
+            background: #00175B;
+            width: 100%;
+            height: 30vh;
+            margin: auto;
+            padding-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cta-wrapper {
+            width: 80%;
+            margin-top: 5%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .cta-col {
+            flex-basis: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-col h1 {
+            color: white;
+            font-size: 50px;
+            text-align: left;
+            margin-left: 0;
+            /* Added margin-left property */
+        }
+
+        .cta-col p {
+            color: white;
+            margin-top: 15%;
+            text-align: right;
+        }
+
+        #cta-col-1 {
+            margin-left: -16%;
+            /* Added margin-right property */
+        }
+
+        #cta-col-2 {
+            margin-right: -15%;
+            /* Added margin-right property */
+        }
+
+
+        .footer {
+            width: 100%;
+            box-sizing: border-box;
+            background: #265CFF;
+        }
+
+        .footer-container {
+            display: flex;
+        }
+
+        .footer-column-1 {
+            float: left;
+            width: 25%;
+            height: 300px;
+        }
+
+        .footer-column-2 {
+            float: left;
+            width: 25%;
+            height: 300px;
+        }
+
+        .footer-column-3 {
+            float: left;
+            width: 25%;
+            height: 300px;
+        }
+
+        .footer-column-4 {
+            float: left;
+            width: 25%;
+            height: 300px;
+        }
+
+        .footer-content {
+            padding-top: 15%;
+            width: 70%;
+            padding-left: 15%;
+        }
+
+        .footer-image img {
+            display: block;
+            margin: 0 auto;
+            margin-top: 18%;
+            width: 250px;
+        }
+
+        .footer-content h2 {
+            font-size: larger;
+            color: white;
+            padding-left: 16%;
+        }
+
+        .footer-content ul {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+
+        .footer-content li {
+            margin-top: 10px;
+        }
+
+        .footer-content a {
+            text-decoration: none;
+            color: white;
+            font-size: small;
+        }
+
+        .copyright {
+            height: 20px;
+            text-align: center;
+        }
+
+        .copyright p {
+            font-size: x-small;
+            color: white;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+
+            /* Navbar */
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-brand img {
+                width: 120px;
+                /* Smaller logo for mobile */
+            }
+
+            .navbar-links {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            /* Hero Section */
+            .hero h1 {
+                font-size: 32px;
+                /* Smaller font size for mobile */
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            /* About App and Author Sections */
+            .about-app,
+            .about-author {
+                width: 90%;
+                /* More width for smaller screens */
+            }
+
+            .about-app-col,
+            .about-author-col {
+                flex-basis: 100%;
+                /* Full width on mobile */
+                padding: 15px;
+                text-align: center;
+            }
+
+            .about-app-col img,
+            .about-author-col img {
+                width: 100%;
+                /* Full width images */
+            }
+
+            /* CTA Section */
+            .cta-wrapper {
+                flex-direction: column;
+            }
+
+            .cta-col {
+                flex-basis: 100%;
+                /* Full width on mobile */
+                text-align: center;
+            }
+
+            .cta-col h1 {
+                font-size: 32px;
+            }
+
+            /* Footer */
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-column-1,
+            .footer-column-2,
+            .footer-column-3,
+            .footer-column-4 {
+                width: 100%;
+                /* Full width columns */
+                text-align: center;
+            }
+
+            .footer-content {
+                width: 90%;
+                /* Adjust width for mobile */
+                padding-left: 5%;
+                /* Adjust padding */
+                padding-right: 5%;
+                /* Add right padding */
+            }
+
+            .footer-image img {
+                width: 200px;
+                /* Smaller logo for mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav Section Start -->
+<nav class="navbar">
+    <div class="navbar-brand">
+        <img src="images/logo_original.png" alt="UConnect Logo">
+    </div>
+    <div class="navbar-links">
+        <a class="button" id="events-button" href="/checkout-events">Checkout Events</a>
+        <a class="button" id="login-button" href="/login-options">Login</a>
+        <a class="button" id="registration-button" href="/registration-options">Registration</a>
+        
+    </div>
+</nav>
+<!-- Nav Section End -->
+
+<!-- Hero Section Start -->
+<section class="hero" data-aos="fade">
+    <h1>Welcome to <img src="images/logo_white.png" width="17%"></h1>
+    <p>
+        Your All-in-One Destination for Alumni Reconnection and Event Collaboration!
+        <br> Whether you're a university alum eager to rediscover your fellow graduates
+        <br> or stay updated on thrilling alumni happenings, UConnect has you covered.
+    </p>
+</section>
+
+<div class="vertical-line-container" data-aos="fade" data-aos="fade" data-aos-easing="ease-in" data-aos-delay="150">
+    <div class="vertical-line"></div>
+</div>
+<!-- Hero Section End -->
+
+<!---------- MAURITIUS INTRO SECTION ----------->
+<section class="about-app" data-aos="fade" data-aos-easing="ease-in" data-aos-delay=600 ">
+    <div class=" row">
+        <div class="about-app-col">
+            <img src="images/calendar2_crop1.jpg">
+        </div>
+        <div class="about-app-col">
+            <h1>About the UConnect</h1>
+            <p>
+                Are you a university alum looking to reconnect with your fellow graduates and stay in the loop about
+                exciting alumni events? Look no further! UConnect is your all-in-one web-based platform designed to
+                bring alumni together and facilitate seamless event collaboration.
+                <br><br>
+                Discover our "About Us" page with event details even if you're not logged in.
+                Alumni students can log in and effortlessly add, modify, or organize events in categories like
+                professional development, networking, and campus activities.
+                Join us now to reconnect and participate in our vibrant alumni community!
+                <br><br>
+                Plus, our user-friendly interface makes navigating and connecting with your alumni network a breeze.
+                With UConnect, rekindling old friendships and forging new connections has never been easier.
+                Join us today and experience the future of alumni collaboration!
+            </p>
+        </div>
+    </div>
+</section>
+<!---------- MAURITIUS INTRO SECTION END ----------->
+
+<div class="vertical-line-container" data-aos="fade" data-aos-easing="ease-in" data-aos-delay="200">
+    <div class="vertical-line"></div>
+</div>
+
+<!-- About Author Section Start -->
+<section class="about-author" data-aos="fade" data-aos-easing="ease-in" data-aos-delay=600 ">
+    <div class=" row">
+        <div class="about-author-col">
+            <h1>About the Author,<br>Brian Gathui</h1>
+            <p>
+                Brian is an aspiring, highly-motivated computer science student, from Kenya,
+                with a strong passion and interest in learning all aspects of the technology industry.
+                He is currently completing his 3rd year at the African Leadership University pursuing my B. Sc.
+                Computing (Hons)
+                Degree. He has a passion for UI/UX designing and aspires to become a UI/UX designer in the future of his
+                career.
+                He was responsible for the overall design of the web application and also participated in the
+                development and
+                completion of the group report. Feel free to reach him at Email
+            </p>
+        </div>
+        <div class="about-author-col">
+            <img src="images/brian2.png">
+        </div>
+    </div>
+</section>
+<!-- About Author Section End -->
+
+<!-- Call to Action Start -->
+<section class="cta">
+    <div class="cta-wrapper">
+        <div class="cta-col" id="cta-col-1" data-aos="fade" data-aos-easing="ease-in" data-aos-delay="250">
+            <h1>Want to Use Our Services?</h1>
+        </div>
+        <div class="cta-col" id="cta-col-2" data-aos="fade" data-aos-easing="ease-in" data-aos-delay="250">
+            <p>If you want to use our services and connect with other Alumni, please Register as either an
+                Alumni Student, an Alumni Manager
+                or Admin. If you are already registered, please login to access our services.</p>
+            </p>
+        </div>
+    </div>
+</section>
+<!-- Call to Action Section End -->
+
+<!-- Footer Section Start -->
+<footer class="footer">
+    <div class="footer-container" data-aos="fade" data-aos-easing="ease-in" data-aos-delay="250">
+        <div class="footer-column-1">
+            <div class="footer-image">
+                <img src="/images/logo_white.png" alt="" />
+            </div>
+        </div>
+        <div class="footer-column-2">
+            <div class="footer-content">
+                <h2>Navigation</h2>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/login-options">Login Options </a></li>
+                    <li><a href="/registration-options">Registration Options</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-column-3">
+            <div class="footer-content">
+                <h2>Contact Information</h2>
+                <ul>
+                    <li><a href="">(+254) 7899 023</a></li>
+                    <li><a href="">uc.customersupport@gmail.com</a></li>
+                    <li><a href="">uc.techsupport@gmail.com</a></li>
+                    <li><a href="">uc.adminsupport@gmail.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-column-4">
+            <div class="footer-content">
+                <h2>Socials</h2>
+                <ul>
+                    <li><a href=""> @UConnectOfficial - Facebook</a></li>
+                    <li><a href=""> @UConnectOfficial - Twitter</a></li>
+                    <li><a href=""> @UConnectOfficial - Instagram</a></li>
+                    <li><a href=""> UConect - Discord</a></li>
+                    <li><a href="">r/UConnect - Reddit</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>All Rights Reserved &#169;UConnect</p>
+    </div>
+</footer>
+<!-- Footer Section End -->
+<script>
+    AOS.init();
+</script>
+</body>
+</html>

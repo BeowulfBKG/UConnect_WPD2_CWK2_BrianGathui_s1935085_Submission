@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UConnect - Alumni Student Login</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .carousel-container {
+            flex: 7;
+            overflow: hidden;
+        }
+
+        .alumniStudentRegistration-container {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            margin: 0;
+        }
+
+        .alumniStudentRegistration-form {
+            padding: 10px;
+            max-width: 400px;
+        }
+
+        .alumniStudentRegistration-form h2,
+        .alumniStudentRegistration-form p {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .alumniStudentRegistration-form img {
+            margin-bottom: 5px;
+        }
+
+        .alumniStudentRegistration-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .alumniStudentRegistration-form textarea {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .alumniStudentRegistration-form input,
+        .alumniStudentRegistration-form select,
+        .alumniStudentRegistration-form textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            color: #265CFF;
+        }
+
+        .alumniStudentRegistration-form select:focus,
+        .alumniStudentRegistration-form input:focus,
+        .alumniStudentRegistration-form textarea:focus {
+            outline: none;
+            border-color: #265CFF;
+        }
+
+        .alumniStudentRegistration-form button:hover {
+            background-color: transparent;
+            color: #265CFF;
+            background-color: transparent;
+            border: 1.5px solid #265CFF;
+            font-weight: bold;
+        }
+
+        .alumniStudentRegistration-form select {
+            color: #6c6c6c;
+        }
+
+        .alumniStudentRegistration-form button {
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #265CFF;
+            border-radius: 5px;
+            background-color: #265CFF;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .alumniStudentRegistration-form a {
+            color: #265CFF;
+            text-decoration: none;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .logo {
+            width: 224px;
+            height: 40px;
+            display: block;
+        }
+
+        .navlinks {
+            font-size: 90%;
+        }
+
+        @media (max-width: 853px) {
+            .carousel-container {
+                display: none;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .alumniStudentRegistration-container {
+                width: 100%;
+                order: 2;
+            }
+
+            .alumniStudentRegistration-form {
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="alumniStudentRegistration-container">
+            <div class="alumniStudentRegistration-form">
+                <img src="/images/logo_original.png" alt="UConnect Logo" class="logo">
+                <h2>Alumni Student Registration</h2>
+                <p>Welcome! Please fill out your details to register</p>
+                <form id="alumniStudentRegistrationForm" action="/registration-options/alumni-student" method="POST"
+                    onsubmit="showConfirmation(event)">
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+                    <input type="email" name="emailAddress" id="emailAddress" placeholder="Email Address" required>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"
+                        required>
+                    <select name="accountType" id="accountType" required>
+                        <option value="" disabled selected>Select Account Type</option>
+                        <option value="Alumni Student">Alumni Student</option>
+                    </select>
+                    <input type="number" name="graduationYear" id="graduationYear" placeholder="Graduation Year"
+                        required>
+                    <button type="submit" id="alumniStudentButton">Register</button>
+                </form>
+                <div class="navlinks">
+                    <p>Register a different Account? <a href="/registration-options"><b>Registration Options</b></a></p>
+                    <p>Login as an <a href="/login-options/alumni-student"><b>Alumni Student</b></a> instead?</p>
+                    <p>Login as a different account type? <a href="/login-options"><b>Login Options</b></a></p>
+                    <p>Back to <a href="/"><b>Home</b></a>?</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-container">
+            <div id="carousel" class="carousel">
+                <img src="/images/reg4.jpg" alt="Image 1">
+            </div>
+        </div>
+    </div>
+    <div id="confirmationDialog" style="display: none;">
+        <p>Alumni Student Account Created Successfully!</p>
+    </div>
+    <script>
+        function showConfirmation(event) {
+            event.preventDefault();
+            if (passwordConfirmation()) {
+                document.getElementById('confirmationDialog').style.display = 'block';
+                // Handle the notification permission and display
+                if ('Notification' in window) {
+                    Notification.requestPermission().then(function (permission) {
+                        if (permission === "granted") {
+                            new Notification('Registration Complete', {
+                                body: 'Your registration as an alumni student has been successful!',
+                            });
+                        }
+                    });
+                } else {
+                    alert('Your registration as an alumni student has been successful!');
+                }
+                setTimeout(function () {
+                    event.target.submit();
+                }, 2000);
+            }
+        }
+
+        function passwordConfirmation() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

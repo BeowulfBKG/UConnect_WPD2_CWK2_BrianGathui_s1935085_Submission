@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UConnect Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body,
+        h1,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            list-style: none;
+        }
+
+        .dashboard {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: black;
+            height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            width: 150px;
+        }
+
+        .menu,
+        .user-account {
+            padding: 20px;
+        }
+
+        .menu ul,
+        .user-account ul {
+            padding: 0;
+        }
+
+        .menu ul li a,
+        .user-account ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .menu ul li i,
+        .user-account ul li i {
+            width: 24px;
+            height: 24px;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .user-account {
+            margin-top: auto;
+        }
+
+        .content {
+            flex-grow: 1;
+            background-color: #ECF0F1;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .header h1 {
+            margin-right: 20px;
+        }
+
+
+
+        .header input[type="search"]:focus {
+            outline: none;
+            border-color: #265CFF;
+        }
+
+        #cancelEditAccount-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1.5px solid red;
+            border-radius: 5px;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #cancelEditAccount-button i {
+            margin-left: 5px;
+        }
+
+        #cancelEditAccount-button:hover {
+            background-color: transparent;
+            color: red;
+            border: 1.5px solid red;
+        }
+
+        .editAccount-container {
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            color: #265CFF;
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #265CFF;
+        }
+
+        button[type="submit"] {
+            background-color: #265CFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/images/logo_original.png" alt="UConnect Logo">
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="/alumni-student/all-events"><i class="far fa-folder"></i>All Events</a></li>
+                    <li><a href="/alumni-student/my-events"><i class="far fa-folder-open"></i>My Events</a></li>
+                </ul>
+            </nav>
+            <div class="user-account">
+                <ul>
+                    <li><a href="/alumni-student/edit-account"><i class="fas fa-cog"></i>Edit Account</a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+                </ul>
+            </div>
+        </aside>
+        <main class="content">
+            <header class="header">
+                <h1>Edit Account</h1>
+                <a href="/alumni-student/all-events" id="cancelEditAccount-button" class="button">Cancel</a>
+            </header>
+
+            <section class="editAccount-container">
+                <form id="editAccountForm" method="POST" action="/alumni-student/edit-account">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" name="firstName" id="firstName" placeholder="First Name" value="<%= alumniStudent.firstName %>">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="<%= alumniStudent.lastName %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailAddress">Email Address:</label>
+                        <input type="email" name="emailAddress" id="emailAddress" placeholder="Email Address" value="<%= alumniStudent.emailAddress %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newPassword">New Password:</label>
+                        <input type="password" name="newPassword" id="newPassword" placeholder="New Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password Confirmation:</label>
+                        <input type="password" name="newPasswordConfirm" id="newPassword" placeholder="New Password">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Update</button>
+                    </div>
+                </form>
+            </section>
+            <script>
+                
+
+            </script>
+        </main>
+    </div>
+</body>
+
+</html>

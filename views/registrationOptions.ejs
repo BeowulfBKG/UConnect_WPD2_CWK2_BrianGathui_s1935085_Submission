@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UConnect - Registration Options</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .carousel-container {
+            flex: 7;
+            /* 70% of the width */
+            overflow: hidden;
+        }
+
+        .registrationOptions-container {
+            flex: 3;
+            /* 30% of the width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+
+        .registrationOptions-form {
+            padding: 10px;
+            max-width: 400px;
+            /* Updated width */
+        }
+
+        .registrationOptions-form h2 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .registrationOptions-form p {
+            color: white;
+            margin-bottom: 10px;
+            /* 10px spacing between "Welcome" and the buttons */
+        }
+
+        .registrationOptions-form img {
+            margin-bottom: 10px;
+        }
+
+        .registrationOptions-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #alumniStudentRegistrationOptions-button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1.5px solid #265CFF;
+            border-radius: 5px;
+            background-color: #265CFF;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #alumniStudentRegistrationOptions-button:hover {
+            background-color: transparent;
+            color: #265CFF;
+            border: 1.5px solid #265CFF;
+        }
+
+        #alumniManagerRegistrationOptions-button {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: transparent;
+            color: #265CFF;
+            border: 1.5px solid #265CFF;
+            border-radius: 5px;
+            
+        }
+
+        #alumniManagerRegistrationOptions-button:hover {
+            border: 1.5px solid #265CFF;
+            background-color: #265CFF;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .registrationOptions-form a {
+            color: #265CFF;
+            text-decoration: none;
+        }
+
+        .carousel img {
+            width: 110%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .logo {
+            width: 224px;
+            height: 40px;
+            display: block;
+        }
+        .navlinks{
+            font-size: 90%;
+        }
+
+        /* Responsive styling starts here */
+        @media (max-width: 853px) {
+            .carousel-container {
+                display: none;
+                /* Hide the carousel container on small screens */
+            }
+        }
+
+        /* Additional responsive styles for mobile devices */
+        @media (max-width: 800px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .registrationOptions-container {
+                width: 100%;
+                order: 2;
+                /* Reorder to push registration form below */
+            }
+
+            .registrationOptions-form {
+                width: 90%;
+                /* Adjust width for mobile */
+                margin: 0 auto;
+                /* Center in the viewport */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="registrationOptions-container">
+            <div class="registrationOptions-form">
+                <img src="/images/logo_original.png" alt="UConnect Logo" class="logo">
+                <h2>Registration Options</h2>
+                <p>Welcome! Please select your registration type.</p>
+                <form id="registrationOptionsForm">
+                    <button type="button" id="alumniStudentRegistrationOptions-button" class="button"
+                        onclick="location.href='/registration-options/alumni-student'">Alumni Student
+                        Registration</button>
+                    <button type="button" id="alumniManagerRegistrationOptions-button" class="button"
+                        onclick="location.href='/registration-options/alumni-manager'">Alumni Manager
+                        Registration</button>
+                </form>
+                <div class="navlinks">
+                    <p>Already have an account? <a href="/login-options"><b>Login Options</b></a></p>
+                    <p>Back to <a href="/"><b>Home</b></a>?</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-container">
+            <div id="carousel" class="carousel">
+                <img src="/images/reg1.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
